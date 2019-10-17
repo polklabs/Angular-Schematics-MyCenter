@@ -1,0 +1,10 @@
+{
+  "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "store": {
+      "description": "MyCenter Store Generator",
+      "factory": "./store/index#store",
+      "schema": "./store/schema.json"
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "id": "StoreSchematics",
+    "title": "Store Options Schema",
+    "type": "object",
+    "description": "Generates a ngrx store for an entity or data table",
+    "properties": {
+        "entityName": {
+            "type": "string",
+            "description": "The name of the entity/datatable",
+            "$default": {
+                "$source": "argv",
+                "index": 0
+            },
+            "x-prompt": "Entity/Datatable name?"
+        },
+        "storeType": {
+            "type": "string",
+            "description": "The type of the store",
+            "default": "entity",
+            "enum": [
+                "entity",
+                "data-table"
+            ],
+            "x-prompt": "What type of store is this?"
+        },
+        "reducerType": {
+            "type": "string",
+            "description": "Method of adding to the store",
+            "default": "UpsertMany",
+            "enum": [
+                "UpsertMany",
+                "AddAll"
+            ],
+            "x-prompt": "What mathod of adding to the store should be used?"
+        },
+        "loadData": {
+            "type": "boolean",
+            "description": "Load from the webapi",
+            "default": false,
+            "x-prompt": "Load Entity/DataTable?"
+        },
+        "saveData": {
+            "type": "boolean",
+            "description": "Save from the webapi",
+            "default": false,
+            "x-prompt": "Save Entity/DataTable?"
+        },
+        "deleteData": {
+            "type": "boolean",
+            "description": "Delete from the webapi",
+            "default": false,
+            "x-prompt": "Delete Entity/DataTable?"
+        },
+        "project": {
+            "type": "string",
+            "description": "Generate in specific Angular CLI workspace project"
+        }
+    },
+    "required": [
+        "entityName",
+        "storeType",
+        "reducerType",
+        "loadData",
+        "saveData",
+        "deleteData"
+    ]
+}

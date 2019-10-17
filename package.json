@@ -1,0 +1,29 @@
+{
+  "name": "@schematics/myCenter",
+  "version": "1.0.2",
+  "description": "My Center Schematics",
+  "scripts": {
+    "build:watch": "tsc -p tsconfig.json --watch",
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && jasmine src/**/*_spec.js"
+  },
+  "keywords": [
+    "schematics"
+  ],
+  "author": "",
+  "license": "MIT",
+  "schematics": "./src/collection.json",
+  "dependencies": {
+    "@angular-devkit/core": "^8.3.9",
+    "@angular-devkit/schematics": "^8.3.9",
+    "@types/jasmine": "^3.3.9",
+    "@types/node": "^8.0.31",
+    "codelyzer": "^5.1.2",
+    "jasmine": "^3.3.1",
+    "tslint": "^5.20.0",
+    "typescript": "~3.5.3"
+  },
+  "devDependencies": {
+    "@schematics/angular": "^8.3.9"
+  }
+}
