@@ -1,0 +1,21 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "id": "ModuleSchematics",
+    "title": "Module Options Schema",
+    "type": "object",
+    "description": "Generates a basic module for mycenter",
+    "properties": {
+        "moduleName": {
+            "type": "string",
+            "description": "The name of the module",
+            "$default": {
+                "$source": "argv",
+                "index": 0
+            },
+            "x-prompt": "Module name?"
+        }
+    },
+    "required": [
+        "moduleName"
+    ]
+}

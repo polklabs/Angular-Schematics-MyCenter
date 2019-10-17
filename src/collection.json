@@ -5,6 +5,11 @@
       "description": "MyCenter Store Generator",
       "factory": "./store/index#store",
       "schema": "./store/schema.json"
+    },
+    "module": {
+      "description": "MyCenter Module Generator",
+      "factory": "./module/index#module",
+      "schema": "./module/schema.json"
     }
   }
 }
