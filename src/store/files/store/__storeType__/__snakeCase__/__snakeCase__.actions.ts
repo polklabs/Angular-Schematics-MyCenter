@@ -21,7 +21,8 @@ export class <%= reducerType %> implements Action {
 }
 <% if(loadData) { %>
 export class Load implements Action {
-  readonly type = <%= upperName %>ActionTypes.Load;
+  readonly type = <%= upperName %>ActionTypes.Load;<% if(single) { %>
+  constructor(public cargo: string) { }<% } %>
 }
 
 export class LoadSuccess implements Action {

@@ -34,6 +34,12 @@
             ],
             "x-prompt": "What mathod of adding to the store should be used?"
         },
+        "single": {
+            "type": "boolean",
+            "description": "Load a single entity from web api",
+            "default": false,
+            "x-prompt": "Load a single entity from webApi?"
+        },
         "loadData": {
             "type": "boolean",
             "description": "Load from the webapi",
@@ -61,6 +67,7 @@
         "entityName",
         "storeType",
         "reducerType",
+        "single",
         "loadData",
         "saveData",
         "deleteData"

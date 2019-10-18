@@ -28,3 +28,20 @@ private parse<%= fullNameUpper %>(payload: any) {
 
 <%= upperName %>DataService,
 <% } %>
+
+
+// Use store in a data interface
+
+<%= lowerName %>DataInterface: <%= upperName %>DataInterface;
+
+constructor(
+  private <%= lowerName %>Store: Store<<%= fullNameUpper %>State>,
+) {
+    this.<%= lowerName %>DataInterface = new <%= upperName %>DataInterface(this.<%= lowerName %>Store);
+}
+
+public get<%= upperName %>(id: string): Observable<Info<<%= fullNameUpper %>>> {
+  this.<%= lowerName %>DataInterface.get<%= storeTypeUpper %>(id);
+}
+
+etc....

@@ -13,9 +13,28 @@
                 "index": 0
             },
             "x-prompt": "Module name?"
+        },
+        "moduleUrl": {
+            "type": "string",
+            "description": "The Url Route of the new module",
+            "x-prompt": "Module Route? (mycenter/mybenefits/discounts)?"
+        },
+        "modalName": {
+            "type": "string",
+            "description": "Name of the modal",
+            "x-prompt": "Name of the popup modal?"
+        },
+        "hasModalUrl": {
+            "type": "boolean",
+            "description": "Should a modal be generated with custom urls",
+            "default": false,
+            "x-prompt": "Use url query for modal?"
         }
     },
     "required": [
-        "moduleName"
+        "moduleName",
+        "moduleUrl",
+        "modalName",
+        "hasModalUrl"
     ]
 }

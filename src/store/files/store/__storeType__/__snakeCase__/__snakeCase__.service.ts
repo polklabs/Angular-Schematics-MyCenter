@@ -16,10 +16,10 @@ export class <%= upperName %>DataService {
         private notificationService: NotificationService
     ) { }<% if(loadData) { %>
 
-    public load<%= upperName %>s(): Observable<boolean> {
+    public load<%= upperName %><% if(!single) { %>s<% } %>(<% if(single) { %>id: string<% } %>): Observable<boolean> {
         const result = new AsyncSubject<boolean>();
         const transaction = new Transaction();
-        transaction.addOperation(<% if(storeType === 'entity') { %>'TecNet<%= upperName %>'<% } else { %>'<%= fullNameUpper %>'<% } %>);
+        transaction.addOperation(<% if(storeType === 'entity') { %>'TecNet<%= upperName %>'<% } else { %>'<%= fullNameUpper %>'<% } %><% if(single) { %>, [id]<% } %>);
 
         const sub = this.dataService.postTransaction(transaction).subscribe(
             (msg: Message) => {

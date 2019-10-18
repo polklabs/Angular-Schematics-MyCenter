@@ -1,0 +1,4 @@
+<div fxLayout="column" fxLayoutGap="16px" class="sizeSetting">
+    <app-description [characterLimit]="500" [title]="'<%= classify(moduleName) %>'" [description]="description"></app-description>
+    <app-<%= dasherize(moduleName) %>-table></app-<%= dasherize(moduleName) %>-table>
+</div>

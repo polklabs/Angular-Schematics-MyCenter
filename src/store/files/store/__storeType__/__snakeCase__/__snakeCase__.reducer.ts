@@ -5,7 +5,8 @@ import { Info } from 'src/app/shared/model/info.model';
 
 export interface <%= fullNameUpper %>State extends EntityState<Info<<%= fullNameUpper %>>> {<% if(loadData) { %>
       loading: boolean;
-      error: boolean;<% } if(saveData) { %>
+      error: boolean;
+      // allLoaded: boolean;<% } if(saveData) { %>
       saveSuccess: boolean;<% } if(deleteData) { %>
       deleteSuccess: boolean; <% } %>
 }
@@ -14,7 +15,8 @@ export const <%= fullNameLower %>Adapter = createEntityAdapter<Info<<%= fullName
 
 const default<%= upperName %> = {<% if(loadData) { %>
   loading: false,
-  error: null,<% } if(saveData) { %>
+  error: null,
+  // allLoaded<% } if(saveData) { %>
   saveSuccess: false,<% } if(deleteData) { %>
   deleteSuccess: false,<% } %>
 };
@@ -36,7 +38,8 @@ export function <%= fullNameLower %>Reducer(
             return {
                 ...state,
                 loading: false,
-                error: false
+                error: false,
+                // allLoaded: true
             };
         case <%= upperName %>ActionTypes.LoadFail:
             return {

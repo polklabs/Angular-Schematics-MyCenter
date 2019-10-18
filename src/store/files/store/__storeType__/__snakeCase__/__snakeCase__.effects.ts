@@ -20,7 +20,7 @@ export class <%= upperName %>Effects {
     @Effect()
     load<%= upperName %>$: Observable<Action> = this.actions$.pipe(
         ofType(<%= upperName %>ActionTypes.Load),
-        mergeMap(() => this.<%= lowerName %>DataService.load<%= upperName %>s().pipe(
+        mergeMap((<% if(single){ %>action: <%= lowerName %>Actions.Load<% } %>) => this.<%= lowerName %>DataService.load<%= upperName %><% if(!single) { %>s<% } %>(<% if(single) { %>action.cargo<% } %>).pipe(
             map((result: boolean) => result ? new <%= lowerName %>Actions.LoadSuccess() : new <%= lowerName %>Actions.LoadFail())
         )
         )

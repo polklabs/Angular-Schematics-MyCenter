@@ -1,0 +1,31 @@
+<mat-card>
+
+    <app-table-view
+      [tableData$]="tableData$"
+      [loading$]="tableDataLoading$"
+      [error$]="tableDataError$">
+        <table mat-table class="tri-highlightable" [dataSource]="dataSource" matSort
+                style="width: 100%;">
+
+                <!-- Row -->
+                <ng-container matColumnDef="Row">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Example Row</th>
+                    <td mat-cell *matCellDef="let element">{{element.Row}}</td>
+                </ng-container>
+
+                <!-- Data -->
+                <ng-container matColumnDef="Data">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Example Data</th>
+                    <td mat-cell *matCellDef="let element">{{ element.Data }}</td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                <tr mat-row 
+                    *matRowDef="let row; columns: displayedColumns;" 
+                    (click)="tableRowClicked.emit(row.SchemTest_ID)"></tr>
+
+            </table>
+            <mat-paginator [pageSizeOptions]="[5,10,15]" showFirstLastButtons></mat-paginator>
+    </app-table-view>
+
+</mat-card>

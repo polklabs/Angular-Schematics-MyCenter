@@ -1,0 +1,37 @@
+<div *ngIf="((modalDataLoading$ | async) === false) else loading">
+    <div *ngIf="((modalDataError$ | async) === false) else errorLoading">
+
+        <h2>{{modalData.entity.Row}}</h2>
+        <mat-divider></mat-divider>
+
+        <mat-dialog-content>
+
+            <p><strong>Data: </strong>{{modalData.entity.Data}}</p>
+            <p><strong>ID: </strong>{{modalData.entity.SchemTest_ID}}</p>
+        
+        </mat-dialog-content>
+        
+        <mat-dialog-actions>
+            <button mat-raised-button (click)="closeModal()">Close</button>
+        </mat-dialog-actions>
+
+    </div>
+</div>
+
+<ng-template #loading>
+    <h2>Loading <%= classify(moduleName) %>...</h2>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+
+    <mat-dialog-actions>
+        <button mat-raised-button (click)="closeModal()">Close</button>
+    </mat-dialog-actions>
+</ng-template>
+
+<ng-template #errorLoading>
+    <h2>Error Loading <%= classify(moduleName) %>...</h2>
+    <p>Unable to retieve data</p>
+
+    <mat-dialog-actions>
+        <button mat-raised-button (click)="closeModal()">Close</button>
+    </mat-dialog-actions>
+</ng-template>

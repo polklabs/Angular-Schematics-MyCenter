@@ -1,0 +1,6 @@
+<app-<%= dasherize(moduleName) %>-table-presentation
+    [tableData$]="tableData$"
+    [tableDataLoading$]="tableDataLoading$"
+    [tableDataError$]="tableDataError$"
+    (tableRowClicked)="open<%= classify(modalName) %>Modal($event)">
+</app-<%= dasherize(moduleName) %>-table-presentation>
