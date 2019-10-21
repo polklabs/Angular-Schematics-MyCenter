@@ -4,9 +4,10 @@ import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 
 import { Info } from 'src/app/shared/model/info.model';
+import { <%= fullNameUpper %>} from 'src/app/store/model/<%= snakeCaseFull %>.model';
 
 import * as actions from './<%= snakeCase %>.actions';
-import * as selectors from './index'
+import * as selectors from './index';
 import { <%= fullNameUpper %>State } from './<%= snakeCase %>.reducer';
 
 export class <%= upperName %>DataInterface {
