@@ -15,8 +15,10 @@ export const {
 
 export const get<%= upperName %>ById = (id: string) => createSelector(getEntities, (entities) => entities[id]);<% if(loadData) { %>
 export const isLoading = createSelector(get<%= upperName %>State, (s) => s.loading);
-export const hasError = createSelector(get<%= upperName %>State, (s) => s.error);<% } if(saveData) { %>
-export const saveSuccess = createSelector(get<%= upperName %>State, (s) => s.saveSuccess);<% } %>
+export const hasError = createSelector(get<%= upperName %>State, (s) => s.error);
+// export const allLoaded = createSelector(get<%= upperName %>State, (s) => s.allLoaded);<% } if(saveData) { %>
+export const saveSuccess = createSelector(get<%= upperName %>State, (s) => s.saveSuccess);<% } if(deleteData) { %>
+export const deleteSuccess = createSelector(get<%= upperName %>State, (s) => s.deleteSuccess);<% } %>
 
 /**
  * Add Custom selectors here

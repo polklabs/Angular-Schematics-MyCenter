@@ -8,7 +8,7 @@ export interface <%= fullNameUpper %>State extends EntityState<Info<<%= fullName
       error: boolean;
       // allLoaded: boolean;<% } if(saveData) { %>
       saveSuccess: boolean;<% } if(deleteData) { %>
-      deleteSuccess: boolean; <% } %>
+      deleteSuccess: boolean;<% } %>
 }
 
 export const <%= fullNameLower %>Adapter = createEntityAdapter<Info<<%= fullNameUpper %>>>();
@@ -16,7 +16,7 @@ export const <%= fullNameLower %>Adapter = createEntityAdapter<Info<<%= fullName
 const default<%= upperName %> = {<% if(loadData) { %>
   loading: false,
   error: null,
-  // allLoaded<% } if(saveData) { %>
+  // allLoaded: false<% } if(saveData) { %>
   saveSuccess: false,<% } if(deleteData) { %>
   deleteSuccess: false,<% } %>
 };
@@ -57,8 +57,18 @@ export function <%= fullNameLower %>Reducer(
                 ...state,
                 saveSuccess: true
             };<% } if(deleteData) { %>
+        case <%= upperName %>ActionTypes.Delete:
+            return {
+                ...state,
+                deleteSuccess: null
+            };
+        case <%= upperName %>ActionTypes.DeleteFail:
+            return {
+                ...state,
+                deleteSuccess: false
+            };
         case <%= upperName %>ActionTypes.DeleteSuccess:
-            return <%= fullNameLower %>Adapter.removeOne(action.cargo, {...state});<% } %>
+            return <%= fullNameLower %>Adapter.removeOne(action.cargo, {...state, deleteSuccess: true});<% } %>
         case <%= upperName %>ActionTypes.<%= reducerType %>:
             return <%= fullNameLower %>Adapter.<%= reducerType === 'AddAll' ? 'addAll' : 'upsertMany' %>(action.cargo, {...state});
         default:

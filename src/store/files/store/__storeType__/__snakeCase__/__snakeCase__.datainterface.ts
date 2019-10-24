@@ -10,7 +10,7 @@ import * as actions from './<%= snakeCase %>.actions';
 import * as selectors from './index';
 import { <%= fullNameUpper %>State } from './<%= snakeCase %>.reducer';
 
-export class <%= upperName %>DataInterface {
+export class <%= upperName %>StoreDataInterface {
     constructor(private store: Store<<%= fullNameUpper %>State>) { }
 
     /**
@@ -108,7 +108,7 @@ export class <%= upperName %>DataInterface {
         this.store.dispatch(new actions.Delete(id));
     }
 
-    public getSuccess(): Observable<boolean> {
+    public getDeleteSuccess(): Observable<boolean> {
         return this.store.select(selectors.deleteSuccess);
     }<% } %>
 

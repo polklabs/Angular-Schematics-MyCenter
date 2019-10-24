@@ -12,7 +12,7 @@ export enum <%= upperName %>ActionTypes {
   SaveFail = '[<%= fullNameUpper %>] Save Fail',<% } if(deleteData) { %>
   Delete = '[<%= fullNameUpper %>] Delete',
   DeleteSuccess = '[<%= fullNameUpper %>] Delete Success',
-  DeleteFail = '[<%= fullNameUpper %>] Delete Fail', <% } %>
+  DeleteFail = '[<%= fullNameUpper %>] Delete Fail',<% } %>
 }
 
 export class <%= reducerType %> implements Action {

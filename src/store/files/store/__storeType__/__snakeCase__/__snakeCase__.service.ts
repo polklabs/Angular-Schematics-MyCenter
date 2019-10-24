@@ -56,7 +56,7 @@ export class <%= upperName %>DataService {
                 sub.unsubscribe();
 
                 if (!msg.Success) {
-                    this.notificationService.popError(msg.Msg, 'Error saving <%= upperName %>', msg.InternalMsg);
+                    this.notificationService.popError(msg.Msg, 'Error saving <%= upperName %>', msg.InternalMsg, msg.UserInfo);
                     return;
                 } else {
                     this.notificationService.popSuccess('', 'Successfully saved <%= upperName %>');
@@ -84,7 +84,7 @@ export class <%= upperName %>DataService {
                 sub.unsubscribe();
 
                 if (!msg.Success) {
-                    this.notificationService.popError(msg.Msg, 'Error deleting <%= upperName %>', msg.InternalMsg);
+                    this.notificationService.popError(msg.Msg, 'Error deleting <%= upperName %>', msg.InternalMsg, msg.UserInfo);
                     return;
                 } else {
                     this.notificationService.popSuccess('', 'Successfully deleted <%= upperName %>');
