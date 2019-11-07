@@ -41,7 +41,7 @@ constructor(
 }
 
 public get<%= upperName %>(id: string): Observable<Info<<%= fullNameUpper %>>> {
-  this.<%= lowerName %>StoreDataInterface.get<%= storeTypeUpper %>(id);
+  return this.<%= lowerName %>StoreDataInterface.get<%= storeTypeUpper %>(id);
 }
 
 etc....
