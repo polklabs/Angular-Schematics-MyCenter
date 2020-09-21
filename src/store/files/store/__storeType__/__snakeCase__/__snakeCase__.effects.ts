@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 
-import * as <%= lowerName %>Actions from './<%= snakeCase %>.actions';
-import { <%= upperName %>ActionTypes } from './<%= snakeCase %>.actions';
+import {<% if(loadData) { %> Load, LoadSuccess, LoadFail,<% } if(saveData) { %> Save, SaveSuccess, SaveFail,<% } if(deleteData) { %> Delete, DeleteSuccess, DeleteFail,<% } %> } from './<%= snakeCase %>.actions';
 
 /*RXJS*/
 import { mergeMap, map } from 'rxjs/operators';
@@ -19,27 +18,27 @@ export class <%= upperName %>Effects {
 
     @Effect()
     load<%= upperName %>$: Observable<Action> = this.actions$.pipe(
-        ofType(<%= upperName %>ActionTypes.Load),
-        mergeMap((<% if(single){ %>action: <%= lowerName %>Actions.Load<% } %>) => this.<%= lowerName %>DataService.load<%= upperName %><% if(!single) { %>s<% } %>(<% if(single) { %>action.cargo<% } %>).pipe(
-            map((result: boolean) => result ? new <%= lowerName %>Actions.LoadSuccess() : new <%= lowerName %>Actions.LoadFail())
+        ofType(Load),
+        mergeMap((<% if(single){ %>{payload}<% } %>) => this.<%= lowerName %>DataService.load<%= upperName %><% if(!single) { %>s<% } %>(<% if(single) { %>payload<% } %>).pipe(
+            map((result: boolean) => result ? LoadSuccess() : LoadFail())
         )
         )
     );<% } if(saveData) { %>
 
     @Effect()
     save<%= upperName %>$: Observable<Action> = this.actions$.pipe(
-        ofType(<%= upperName %>ActionTypes.Save),
-        mergeMap((action: <%= lowerName %>Actions.Save) => this.<%= lowerName %>DataService.save<%= upperName %>(action.cargo).pipe(
-            map((result: boolean) => result ? new <%= lowerName %>Actions.SaveSuccess() : new <%= lowerName %>Actions.SaveFail())
+        ofType(Save),
+        mergeMap(({payload}) => this.<%= lowerName %>DataService.save<%= upperName %>(payload).pipe(
+            map((result: boolean) => result ? SaveSuccess() : SaveFail())
         )
         )
     );<% } if(deleteData){ %>
 
     @Effect()
     delete<%= upperName %>$: Observable<Action> = this.actions$.pipe(
-        ofType(<%= upperName %>ActionTypes.Delete),
-        mergeMap((action: <%= lowerName %>Actions.Delete) => this.<%= lowerName %>DataService.delete<%= upperName %>(action.cargo).pipe(
-            map((result: boolean) => result ? new <%= lowerName %>Actions.DeleteSuccess(action.cargo) : new <%= lowerName %>Actions.DeleteFail())
+        ofType(Delete),
+        mergeMap(({payload}) => this.<%= lowerName %>DataService.delete<%= upperName %>(payload).pipe(
+            map((result: boolean) => result ? DeleteSuccess(payload) : DeleteFail())
         )
         )
     );<% } %>

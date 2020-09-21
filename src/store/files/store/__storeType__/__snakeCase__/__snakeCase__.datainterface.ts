@@ -1,17 +1,16 @@
 import { Store } from '@ngrx/store';
 
-import { Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { Observable } from 'rxjs';<% if(loadData) { %>
+import { take } from 'rxjs/operators';<% } %>
 
 import { Info } from 'src/app/shared/model/info.model';
 import { <%= fullNameUpper %>} from 'src/app/store/model/<%= snakeCaseFull %>.model';
-
-import * as actions from './<%= snakeCase %>.actions';
+<% if(loadData || saveData || deleteData) { %>
+import * as actions from './<%= snakeCase %>.actions';<% } %>
 import * as selectors from './index';
-import { <%= fullNameUpper %>State } from './<%= snakeCase %>.reducer';
 
 export class <%= upperName %>StoreDataInterface {
-    constructor(private store: Store<<%= fullNameUpper %>State>) { }
+    constructor(private store: Store<any>) { }
 
     /**
      * Get Data FUNCTIONS
@@ -69,7 +68,7 @@ export class <%= upperName %>StoreDataInterface {
      */
 
     public load(): void {
-        this.store.dispatch(new actions.Load());
+        this.store.dispatch(actions.Load());
     }<% } else { %>
 
     /**
@@ -77,7 +76,7 @@ export class <%= upperName %>StoreDataInterface {
      */
 
     public load(id: string): void {
-        this.store.dispatch(new actions.Load(id));
+        this.store.dispatch(actions.Load(id));
     }<% } %>
 
     public getIsLoading(): Observable<boolean> {
@@ -93,7 +92,7 @@ export class <%= upperName %>StoreDataInterface {
      */
 
     public save(data: <%= fullNameUpper %>): void {
-        this.store.dispatch(new actions.Save(data));
+        this.store.dispatch(actions.Save(data));
     }
 
     public getSaveSuccess(): Observable<boolean> {
@@ -105,7 +104,7 @@ export class <%= upperName %>StoreDataInterface {
      */
 
     public delete(id: string): void {
-        this.store.dispatch(new actions.Delete(id));
+        this.store.dispatch(actions.Delete(id));
     }
 
     public getDeleteSuccess(): Observable<boolean> {

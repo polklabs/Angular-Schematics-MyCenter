@@ -2,15 +2,9 @@
 
 import * as <%= fullNameLower %>Actions from './<%= storeType %>/<%= snakeCase %>/<%= snakeCase %>.actions';
 
-// Add the following imports to data-parser.service.ts constructor
+// Add the following variable to data-parser.service.ts
 
-private <%= fullNameLower %>Store: Store<<%= fullNameUpper %>State>,
-
-// Add the following data-parser.service.ts parse method
-
-private parse<%= fullNameUpper %>(payload: any) {
-  this.<%= fullNameLower %>Store.dispatch(new <%= fullNameLower %>Actions.<%= reducerType %>(this.parseData(payload)));
-}
+private <%= fullNameUpper %>Action = <%= fullNameLower %>Actions.<%= reducerType %>;
 
 // Add the following line to reducers.index.ts DataTableState interface
 
@@ -35,9 +29,9 @@ private parse<%= fullNameUpper %>(payload: any) {
 <%= lowerName %>StoreDataInterface: <%= upperName %>StoreDataInterface;
 
 constructor(
-  private <%= lowerName %>Store: Store<<%= fullNameUpper %>State>,
+  private store: Store<any>
 ) {
-    this.<%= lowerName %>StoreDataInterface = new <%= upperName %>StoreDataInterface(this.<%= lowerName %>Store);
+    this.<%= lowerName %>StoreDataInterface = new <%= upperName %>StoreDataInterface(this.store);
 }
 
 public get<%= upperName %>(id: string): Observable<Info<<%= fullNameUpper %>>> {
