@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { Info } from 'src/app/shared/model/info.model';
 
 import { SchemTestEntity } from 'src/app/store/model/schem-test-entity.model';
-import { SchemTestEntityState } from '../store/entity/schem-test/schem-test.reducer';
 
 import { SchemTestStoreDataInterface } from '../store/entity/schem-test/schem-test.datainterface';
 
@@ -14,9 +13,9 @@ export class <%= classify(moduleName) %>DataInterface {
     schemTestStoreDataInterface: SchemTestStoreDataInterface;
 
     constructor(
-        private schemTestStore: Store<SchemTestEntityState>,
+        private store: Store<any>,
     ) {
-        this.schemTestStoreDataInterface = new SchemTestStoreDataInterface(this.schemTestStore);
+        this.schemTestStoreDataInterface = new SchemTestStoreDataInterface(this.store);
     }
 
     /**
