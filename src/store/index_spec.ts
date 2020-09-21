@@ -9,8 +9,10 @@ const collectionPath = path.join(__dirname, '../collection.json');
 describe('store', () => {
   it('works', () => {
     const runner = new SchematicTestRunner('schematics', collectionPath);
-    const tree = runner.runSchematic('store', {}, Tree.empty());
+    const tree = runner.runSchematicAsync('store', {}, Tree.empty());
 
-    expect(tree.files).toEqual([]);
+    tree.subscribe(x  => {
+      expect(x.files).toEqual([]);
+    });
   });
 });
