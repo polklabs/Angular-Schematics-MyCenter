@@ -36,11 +36,11 @@ export class <%= upperName %>StoreDataInterface {
         return all;
     }
 
-    public get<%= storeTypeUpper %>(id: string): Observable<Info<<%= fullNameUpper %>>> {
+    public get<%= storeTypeUpper %>(id: string): Observable<Info<<%= fullNameUpper %>> | undefined> {
         const data = this.store.select(selectors.get<%= upperName %>ById(id));<% if(loadData) { %>
 
         data.pipe(take(1)).subscribe(
-            (result: Info<<%= fullNameUpper %>>) => {
+            (result: Info<<%= fullNameUpper %>> | undefined) => {
                 if (result === undefined) {
                     this.load(<% if(single) { %>id<% } %>);
                 }
@@ -83,7 +83,7 @@ export class <%= upperName %>StoreDataInterface {
         return this.store.select(selectors.isLoading);
     }
 
-    public getHasError(): Observable<boolean> {
+    public getHasError(): Observable<boolean | null> {
         return this.store.select(selectors.hasError);
     }<% } if(saveData) { %>
 

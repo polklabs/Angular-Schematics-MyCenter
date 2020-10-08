@@ -6,7 +6,7 @@ import { ActionsUnion, <% if(loadData) { %>Load, LoadSuccess, LoadFail, <% } if(
 
 export interface <%= fullNameUpper %>State extends EntityState<Info<<%= fullNameUpper %>>> {<% if(loadData) { %>
       loading: boolean;
-      error: boolean;
+      error: boolean | null;
       // allLoaded: boolean;<% } if(saveData) { %>
       saveSuccess: boolean;<% } if(deleteData) { %>
       deleteSuccess: boolean;<% } %>
