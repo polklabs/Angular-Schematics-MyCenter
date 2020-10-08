@@ -14,10 +14,11 @@ export function store(_options: Schema): Rule {
     const snakeCaseFull = camelToUnderscore(fullNameUpper);
     const snakeCase = camelToUnderscore(upperName);
     const storeTypeUpper = _options.storeType === 'entity' ? 'Entity' : 'DataTable';
+    const nameSpaced = namedSpaced(upperName);
 
     const sourceTemplates = url('./files/store');
     const sourceParameterizedTemplates = apply(sourceTemplates, [
-      (!_options.loadData && !_options.saveData && !_options.deleteData) ? filter(x => !x.endsWith('.effects.ts') && !x.endsWith('service.ts')) : noop(),
+      (!_options.loadData && !_options.saveData && !_options.deleteData) ? filter(x => !x.endsWith('.effects.ts')) : noop(),
       template({
         ..._options,
         ...strings,
@@ -27,7 +28,8 @@ export function store(_options: Schema): Rule {
         fullNameLower,
         snakeCaseFull,
         snakeCase,
-        storeTypeUpper
+        storeTypeUpper,
+        nameSpaced
       }),
       move('./src/app/store')
     ]);
@@ -62,4 +64,8 @@ export function camelToUnderscore(key: string): string {
     result = result.slice(1);
   }
   return result;
+}
+
+export function namedSpaced(key: string): string {
+  return key.replace(/([A-Z])/gm, " $1").trim();
 }

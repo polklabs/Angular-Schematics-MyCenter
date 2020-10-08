@@ -71,7 +71,7 @@ export function <%= fullNameLower %>Reducer(
         case DeleteSuccess.type:
             return <%= fullNameLower %>Adapter.removeOne(action.payload, {...state, deleteSuccess: true});<% } %>
         case <%= reducerType %>.type:
-            return <%= fullNameLower %>Adapter.<%= reducerType === 'AddAll' ? 'addAll' : 'upsertMany' %>(action.payload, {...state});
+            return <%= fullNameLower %>Adapter.<%= reducerType === 'AddAll' ? 'setAll' : 'upsertMany' %>(action.payload, {...state});
         default:
             return state;
     }

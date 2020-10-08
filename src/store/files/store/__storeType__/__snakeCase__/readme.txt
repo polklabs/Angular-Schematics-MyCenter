@@ -17,10 +17,6 @@ private <%= fullNameUpper %>Action = <%= fullNameLower %>Actions.<%= reducerType
 // Add the following line to effects.index.ts effects const
 
 <%= upperName %>Effects,
-
-// Add the following line to store.module.ts providers array
-
-<%= upperName %>DataService,
 <% } %>
 
 
