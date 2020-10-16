@@ -1,4 +1,6 @@
-// Add the following imports to data-parser.service.ts action imports
+<% if(storeType === 'entity') { %>// Remember to run 'Entity Model Gen' to generate the entity base class
+
+<% } %>// Add the following imports to data-parser.service.ts action imports
 
 import * as <%= fullNameLower %>Actions from './<%= storeType %>/<%= snakeCase %>/<%= snakeCase %>.actions';
 
