@@ -1,17 +1,22 @@
-<div *ngIf="((modalDataLoading$ | async) === false) else loading">
-    <div *ngIf="((modalDataError$ | async) === false) else errorLoading">
+<!-- Header -->
+<app-modal-header
+    modalTitle="<%= classify(moduleName) %>"
+    (closeModal)="closeModal()">
+</app-modal-header>
 
-        <h2>{{modalData.entity.Row}}</h2>
-        <mat-divider></mat-divider>
+<div *ngIf="((modalDataLoading$ | async) !== true) else loading">
+    <div *ngIf="((modalDataError$ | async) !== true) else errorLoading">
+        <app-dialog-content>
 
-        <mat-dialog-content>
+            <h2>{{modalData?.entity.Row}}</h2>
+            <mat-divider></mat-divider>
 
-            <p><strong>Data: </strong>{{modalData.entity.Data}}</p>
-            <p><strong>ID: </strong>{{modalData.entity.SchemTest_ID}}</p>
+            <p><strong>Data: </strong>{{modalData?.entity.Data}}</p>
+            <p><strong>ID: </strong>{{modalData?.entity.SchemTest_ID}}</p>
+
+        </app-dialog-content>
         
-        </mat-dialog-content>
-        
-        <mat-dialog-actions>
+        <mat-dialog-actions fxLayout="row" fxLayoutAlign="space-between">
             <button mat-raised-button (click)="closeModal()">Close</button>
         </mat-dialog-actions>
 
@@ -19,11 +24,9 @@
 </div>
 
 <ng-template #loading>
-    <h2>Loading <%= classify(moduleName) %>...</h2>
-    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-
-    <mat-dialog-actions>
-        <button mat-raised-button (click)="closeModal()">Close</button>
+    <app-loading-view text="Loading <%= classify(moduleName) %>..."></app-loading-view>
+    <mat-dialog-actions fxLayoutAlign="end" style="width: 100%;">
+        <button mat-raised-button type="button" (click)="closeModal()">Close</button>
     </mat-dialog-actions>
 </ng-template>
 
@@ -31,7 +34,7 @@
     <h2>Error Loading <%= classify(moduleName) %>...</h2>
     <p>Unable to retieve data</p>
 
-    <mat-dialog-actions>
+    <mat-dialog-actions fxLayoutAlign="end">
         <button mat-raised-button (click)="closeModal()">Close</button>
     </mat-dialog-actions>
 </ng-template>

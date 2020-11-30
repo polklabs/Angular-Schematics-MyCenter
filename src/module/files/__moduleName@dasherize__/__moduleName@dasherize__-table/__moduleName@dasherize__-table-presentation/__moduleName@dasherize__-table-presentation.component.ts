@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, ViewChild, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 
 import { Info } from 'src/app/shared/model/info.model';
 import { SchemTestEntity } from 'src/app/store/model/schem-test-entity.model';

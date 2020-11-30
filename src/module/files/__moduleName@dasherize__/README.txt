@@ -2,6 +2,7 @@ Application Routing Module Path
 
 {
     path: '<%= moduleUrl %>',
-    loadChildren: './<%= dasherize(moduleName) %>/<%= dasherize(moduleName) %>.module#<%= classify(moduleName) %>Module',
-    data: {title: 'MyCenter - <%= classify(moduleName) %>'}
+    loadChildren: () => import('./<%= dasherize(moduleName) %>/<%= dasherize(moduleName) %>.module').then(m => m.<%= classify(moduleName) %>Module),
+    canActivate: [ ...oktaAuthGuard ],
+    data: {title: '<%= classify(moduleName) %> | MyCenter'}
 },

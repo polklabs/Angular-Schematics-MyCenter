@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';<% if(hasModalUrl) { %>
 import { Router } from '@angular/router';<% } %>
-import { <% if(!hasModalUrl) { %>MatDialogRef, <% } %>MAT_DIALOG_DATA } from '@angular/material';
+import { <% if(!hasModalUrl) { %>MatDialogRef, <% } %>MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subscription, Observable } from 'rxjs';
 
 import { <%= classify(moduleName) %>DataInterface } from '../../<%= dasherize(moduleName) %>-datainterface.service';
@@ -17,9 +17,9 @@ export class <%= classify(modalName) %>ModalComponent implements OnInit {
 
   subscriptions: Subscription[] = [];
 
-  modalData: Info<SchemTestEntity> = null;
+  modalData: Info<SchemTestEntity>;
   modalDataLoading$: Observable<boolean>;
-  modalDataError$: Observable<boolean>;
+  modalDataError$: Observable<boolean | null>;
 
   constructor(
     private <%= camelize(moduleName) %>DataInterface: <%= classify(moduleName) %>DataInterface,<% if(hasModalUrl) { %>
@@ -29,7 +29,9 @@ export class <%= classify(modalName) %>ModalComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.loadData();
+    if (this.passedData !== '') {
+      this.loadData();
+    }
   }
 
   loadData() {

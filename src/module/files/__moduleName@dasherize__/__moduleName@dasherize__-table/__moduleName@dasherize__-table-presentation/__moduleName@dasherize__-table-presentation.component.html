@@ -1,4 +1,13 @@
 <mat-card>
+    <mat-card fxLayout="row" fxLayoutAlign="space-between" class="blue-info-card">
+        <div fxLayout="column" style="justify-content: center;">
+            <h2 style="margin: 0"><%= classify(moduleName) %></h2>
+        </div>
+        <div fxFlex fxLayout fxLayoutAlign="flex-end">
+            <button mat-raised-button [disabled]="((tableDataLoading$ | async) === true) || ((tableDataError$ | async) === true)"
+                (click)="tableRowClicked.emit('')">Add</button>
+        </div>
+    </mat-card>
 
     <app-table-view
       [tableData$]="tableData$"

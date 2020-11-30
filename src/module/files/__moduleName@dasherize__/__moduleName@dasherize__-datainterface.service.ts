@@ -25,7 +25,7 @@ export class <%= classify(moduleName) %>DataInterface {
         return this.schemTestStoreDataInterface.getEntities();
     }
 
-    public getSchemTest(id: string): Observable<Info<SchemTestEntity>> {
+    public getSchemTest(id: string): Observable<Info<SchemTestEntity> | undefined> {
         return this.schemTestStoreDataInterface.getEntity(id);
     }
 
@@ -33,7 +33,7 @@ export class <%= classify(moduleName) %>DataInterface {
         return this.schemTestStoreDataInterface.getIsLoading();
     }
 
-    public getSchemTestsError(): Observable<boolean> {
+    public getSchemTestsError(): Observable<boolean | null> {
         return this.schemTestStoreDataInterface.getHasError();
     }
 

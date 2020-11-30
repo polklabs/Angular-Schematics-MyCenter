@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';<% if(hasModalUrl) { %>
 import { Router } from '@angular/router';<% } else { %>
-import { MatDialog } from '@angular/material';<% } %>
+import { MatDialog } from '@angular/material/dialog';<% } %>
 
 import { <%= classify(moduleName) %>DataInterface } from '../<%= dasherize(moduleName) %>-datainterface.service';<% if(!hasModalUrl) { %>
 import { <%= classify(modalName) %>ModalComponent } from '../modal/<%= dasherize(modalName) %>-modal/<%= dasherize(modalName) %>-modal.component';<% } %>
@@ -24,7 +24,7 @@ export class <%= classify(moduleName) %>TableComponent implements OnInit {
 
   tableData$: Observable<Info<SchemTestEntity>[]>;
   tableDataLoading$: Observable<boolean>;
-  tableDataError$: Observable<boolean>;
+  tableDataError$: Observable<boolean | null>;
 
   ngOnInit() {
     this.tableData$ = this.<%= camelize(moduleName) %>DataInterface.getSchemTests();
