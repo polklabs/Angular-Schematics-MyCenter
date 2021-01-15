@@ -40,6 +40,8 @@ export class <%= classify(moduleName) %>TableComponent implements OnInit {
     const modalData = {
       height: 'auto',
       width: '800px',
+      maxWidth: '95vw',
+      minWidth: '350px',
       disableClose: true,
       data: id
     };
