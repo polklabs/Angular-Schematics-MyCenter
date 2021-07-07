@@ -1,13 +1,10 @@
 import { Store } from '@ngrx/store';
-
-import { Observable } from 'rxjs';<% if(loadData) { %>
-import { take } from 'rxjs/operators';<% } %>
-
+import { Observable } from 'rxjs';
 import { Info } from 'src/app/shared/model/info.model';
-import { <%= fullNameUpper %>} from 'src/app/store/model/<%= snakeCaseFull %>.model';
-<% if(loadData || saveData || deleteData) { %>
+import { <%= fullNameUpper %>} from 'src/app/store/model/<%= snakeCaseFull %>.model';<% if(loadData || saveData || deleteData) { %>
 import * as actions from './<%= snakeCase %>.actions';<% } %>
-import * as selectors from './index';
+import * as selectors from './index';<% if(loadData) { %>
+import { StoreDataService } from '../../store-data.service';<% } %>
 
 export class <%= upperName %>StoreDataInterface {
     constructor(private store: Store<any>) { }
@@ -16,50 +13,19 @@ export class <%= upperName %>StoreDataInterface {
      * Get Data FUNCTIONS
      */
 
-    public get<%= storeType === 'entity' ? 'Entities' : 'DataTables' %>(): Observable<Info<<%= fullNameUpper %>>[]> {
-        const all = this.store.select(selectors.getAll);<% if(!single && loadData) { %>
-
-        all.pipe(take(1)).subscribe(
-            (result: Info<<%= fullNameUpper %>>[]) => {
-                if (result.length === 0) {
-                    this.getIsLoading().pipe(take(1)).subscribe(
-                        isLoading => {
-                            if (!isLoading) {
-                                this.load();
-                            }
-                        }
-                    );
-                }
-            }
-        );<% } %>
-
-        return all;
+    public get<%= storeType === 'entity' ? 'Entities' : 'DataTables' %>(): Observable<Info<<%= fullNameUpper %>>[]> {<% if(!single && loadData) { %>
+        StoreDataService.autoLoad(this.store, selectors.getAll, this.getIsLoading(), () => this.load(<% if(single) { %>id<% } %>));<% } %>
+        return this.store.select(selectors.getAll);
     }
 
     public get<%= storeTypeUpper %>(id: string): Observable<Info<<%= fullNameUpper %>> | undefined> {
         const data = this.store.select(selectors.get<%= upperName %>ById(id));<% if(loadData) { %>
-
-        data.pipe(take(1)).subscribe(
-            (result: Info<<%= fullNameUpper %>> | undefined) => {
-                if (result === undefined) {
-                    this.load(<% if(single) { %>id<% } %>);
-                }
-            }
-        );<% } %>
-
+        StoreDataService.autoLoadSingle(this.store, data, () => this.load(<% if(single) { %>id<% } %>));<% } %>
         return data;
     }<% if(loadData) { if(!single) { %>
 
     // public getAll<%= storeType === 'entity' ? 'Entities' : 'DataTables' %>(): Observable<Info<<%= fullNameUpper %>>[]> {
-    //     this.store.select(selectors.allLoaded)
-    //         .pipe(take(1))
-    //         .subscribe(
-    //             allLoaded => {
-    //                 if (allLoaded === false) {
-    //                     this.load();
-    //                 }
-    //             }
-    //         );
+    //     StoreDataService.loadAll(this.store, selectors.allLoaded, () => this.load());
     //     return this.store.select(selectors.getAll);
     // }
 
