@@ -43,7 +43,7 @@ npm pack
 To install and run in an angular project run:
 
 ```bash
-npm i --no-save .\schematics-myCenter-1.0.2.tgz
+npm i --no-save .\schematics-myCenter-<latest version>.tgz
 ng g @schematics/myCenter:store
 ```
 And follow the on-screen prompts.
