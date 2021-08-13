@@ -1,7 +1,7 @@
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Info } from 'src/app/shared/model/info.model';
-import { <%= fullNameUpper %>} from 'src/app/store/model/<%= snakeCaseFull %>.model';<% if(loadData || saveData || deleteData) { %>
+import { <%= fullNameUpper %> } from 'src/app/store/model/<%= snakeCaseFull %>.model';<% if(loadData || saveData || deleteData) { %>
 import * as actions from './<%= snakeCase %>.actions';<% } %>
 import * as selectors from './index';<% if(loadData) { %>
 import { StoreDataService } from '../../store-data.service';<% } %>

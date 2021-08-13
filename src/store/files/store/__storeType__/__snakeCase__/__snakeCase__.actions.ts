@@ -2,7 +2,7 @@ import { createAction, union } from '@ngrx/store';<% if(saveData) { %>
 import { <%= fullNameUpper %> } from 'src/app/store/model/<%= snakeCaseFull %>.model';<% } %>
 import { Info } from 'src/app/shared/model/info.model';
 
-export const <%= reducerType %> = createAction(<%= reducerType == 'UpsertMany' ? `'[${fullNameUpper}] Upsert Many'` : `'[${fullNameUpper}] Add All'` %>, (payload: Info<any>[]) => ({payload}));<% if(loadData) { %>
+export const <%= reducerType %> = createAction(<%= reducerType == 'UpsertMany' ? `'[${fullNameUpper}] Upsert Many'` : `'[${fullNameUpper}] Add All'` %>, (payload: Info<any>[]) => ({ payload }));<% if(loadData) { %>
 export const Load = createAction('[<%= fullNameUpper %>] Load'<% if(single) { %>, (payload: string) => ({payload})<% } %>);
 export const LoadSuccess = createAction('[<%= fullNameUpper %>] Load Success');
 export const LoadFail = createAction('[<%= fullNameUpper %>] Load Fail');<% } if(saveData) { %>

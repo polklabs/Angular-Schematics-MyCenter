@@ -22,18 +22,16 @@ private <%= fullNameUpper %>Action = <%= fullNameLower %>Actions.<%= reducerType
 <% } %>
 
 
-// Use store in a data interface
+// Add the following line to data-interface.service.ts variables
 
-<%= lowerName %>StoreDataInterface: <%= upperName %>StoreDataInterface;
+<%= lowerName %>: <%= upperName %>StoreDataInterface;
 
-constructor(
-  private store: Store<any>
-) {
-    this.<%= lowerName %>StoreDataInterface = new <%= upperName %>StoreDataInterface(this.store);
-}
+// Add the following line to data-interface.service.ts constructor
 
-public get<%= upperName %>(id: string): Observable<Info<<%= fullNameUpper %>>> {
-  return this.<%= lowerName %>StoreDataInterface.get<%= storeTypeUpper %>(id);
-}
+this.<%= lowerName %> = new <%= upperName %>StoreDataInterface(store);
 
-etc....
+// Run EntityModelGen from the MyCenter solution file
+
+// --------------------------------------------------------------------------
+// DELETE THIS FILE ONCE YOU ARE DONE ADDING THE STORE ----------------------
+// --------------------------------------------------------------------------
